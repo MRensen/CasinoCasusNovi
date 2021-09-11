@@ -9,7 +9,11 @@ public class Dealer {
     }
 
     public void performMove(Deck deck){
-
+        if(dealerHand.getTotalValue() >= 17){
+            isStaying = true;
+        } else {
+            addCardsToHand(new Card[]{deck.getNextCard()});
+        }
     }
 
     public void addCardsToHand(Card[] cards){

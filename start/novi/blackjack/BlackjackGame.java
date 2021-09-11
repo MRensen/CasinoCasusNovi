@@ -17,16 +17,52 @@ public class BlackjackGame {
     public void playGame(){
         myDeck.shuffle();
         player.addCardsToHand(new Card[]{myDeck.getNextCard(), myDeck.getNextCard()});
+        dealer.addCardsToHand(new Card[]{myDeck.getNextCard()});
 
-        while(!player.isBust()) {
-            dealer.addCardsToHand(new Card[]{myDeck.getNextCard()});
-            System.out.println(player.renderHand());
-            System.out.println(dealer.renderHand());
+        while(true) {
+            southands();
             System.out.println("hit or stay?");
             String hitOrStay = scanner.nextLine().trim();
+
+            //idiot proofing:
+            while(!hitOrStay.equals("hit") && !hitOrStay.equals("stay")) {
+                System.out.println("That is not a valid entry. \n please type \"hit\" or \"stay\".");
+                hitOrStay = scanner.nextLine();
+            }
+
             player.performMove(myDeck, hitOrStay);
+            if(player.isBust()){
+                southands();
+                lost();
+                return;
+            }
+
+            dealer.performMove(myDeck);
+
+            if(dealer.isBust() ||
+                    dealer.isStaying() && dealer.getHandValue() < player.getHandValue()){
+                southands();
+                won();
+                return;
+            }
+            if(player.isStaying() && player.getHandValue() <= dealer.getHandValue()){
+                System.out.println();
+                lost();
+                return;
+            }
 
 
         }
+    }
+
+    private void won(){
+        System.out.println("You Won!!!");
+    }
+    private void lost(){
+        System.out.println("You lost!!!");
+    }
+    private void southands(){
+        System.out.println(player.renderHand());
+        System.out.println(dealer.renderHand());
     }
 }
