@@ -14,14 +14,19 @@ public class Hand {
 
     public void addCard(Card card){
         cardList.add(card);
+        totalValue += card.getValue();
     }
 
     public int getTotalValue(){
-
+        return totalValue;
     }
 
     public String render(){
-
+        StringBuilder builder = new StringBuilder();
+        for(Card card : cardList){
+            builder.append(card.render() + ", ");
+        }
+        return builder.toString();
     }
 
 

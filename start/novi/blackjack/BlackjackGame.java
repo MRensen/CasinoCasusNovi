@@ -15,6 +15,16 @@ public class BlackjackGame {
     }
 
     public void playGame(){
+        myDeck.shuffle();
+        player.addCardsToHand(new Card[]{myDeck.getNextCard(), myDeck.getNextCard()});
 
+        while(!player.isBust()) {
+            dealer.addCardsToHand(new Card[]{myDeck.getNextCard()});
+            System.out.println(player.renderHand());
+            System.out.println(dealer.renderHand());
+            System.out.println("hit or stay?");
+            String hitOrStay = scanner.nextLine().trim();
+            player.performMove(myDeck, hitOrStay);
+        }
     }
 }

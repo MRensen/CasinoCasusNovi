@@ -3,17 +3,16 @@ package novi.blackjack;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Deck {
 
-    int deckSize = 52;
-    List<Card> cards = new ArrayList<>();
-    CardSuit[] suits;
-    CardValue[] values;
+    private int deckSize = 52;
+    private List<Card> cards;
 
     public Deck(){
-//        int deckMakerIndex = 0;
+        cards = new ArrayList<>();
+        final CardSuit[] suits;
+        final CardValue[] values;
         suits = new CardSuit[] {
                 new CardSuit("diamonds", '\u2666', "red"),
                 new CardSuit("spades", '\u2660', "black"),
@@ -44,29 +43,18 @@ public class Deck {
 
     public void shuffle(){
         Collections.shuffle(cards);
-//        Card[] newcards = new Card[52];
-//        int randomcounter = deckSize;
-//        int newcardcounter = 0;
-//        while(randomcounter >=0) {
-//            Random random = new Random();
-//            int index = random.nextInt(randomcounter);
-//            newcards[newcardcounter] = cards[index];
-//            cards[index] = null;
-//            newcardcounter++;
-//            randomcounter--;
-//        }
-//        cards = newcards;
     }
 
     public boolean isEmpty(){
-
+       return cards.isEmpty();
     }
 
     public Card getNextCard(){
-
+        return cards.remove(0);
     }
 
+    // ik weet niet wat ik met deze functie moet??!!
     private Card[] makeCards(){
-
+        return new Card[0];
     }
 }

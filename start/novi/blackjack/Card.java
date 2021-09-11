@@ -10,7 +10,7 @@ public class Card {
     }
 
     public String render(){
-
+        return value.getName() + " of " + suit.getName();
     }
 
     public int getValue(){
