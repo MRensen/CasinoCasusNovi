@@ -53,8 +53,4 @@ public class Deck {
         return cards.remove(0);
     }
 
-    // ik weet niet wat ik met deze functie moet??!!
-    private Card[] makeCards(){
-        return new Card[0];
-    }
 }
