@@ -1,16 +1,19 @@
 package novi.blackjack;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Deck {
 
-    int deckSize = 52
-    Card[] cards = new Card[deckSize];
+    int deckSize = 52;
+    List<Card> cards = new ArrayList<>();
     CardSuit[] suits;
     CardValue[] values;
 
     public Deck(){
-        int deckMakerIndex = 0;
+//        int deckMakerIndex = 0;
         suits = new CardSuit[] {
                 new CardSuit("diamonds", '\u2666', "red"),
                 new CardSuit("spades", '\u2660', "black"),
@@ -34,25 +37,25 @@ public class Deck {
         };
         for(CardSuit suit : suits){
             for(CardValue value: values){
-                cards[deckMakerIndex] = new Card(suit, value);
-                deckMakerIndex++;
+                cards.add(new Card(suit, value));
             }
         }
     }
 
     public void shuffle(){
-        Card[] newcards = new Card[52];
-        int randomcounter = deckSize;
-        int newcardcounter = 0;
-        while(randomcounter >=0) {
-            Random random = new Random();
-            int index = random.nextInt(randomcounter);
-            newcards[newcardcounter] = cards[index];
-            cards[index] = null;
-            newcardcounter++;
-            randomcounter--;
-        }
-        cards = newcards;
+        Collections.shuffle(cards);
+//        Card[] newcards = new Card[52];
+//        int randomcounter = deckSize;
+//        int newcardcounter = 0;
+//        while(randomcounter >=0) {
+//            Random random = new Random();
+//            int index = random.nextInt(randomcounter);
+//            newcards[newcardcounter] = cards[index];
+//            cards[index] = null;
+//            newcardcounter++;
+//            randomcounter--;
+//        }
+//        cards = newcards;
     }
 
     public boolean isEmpty(){
