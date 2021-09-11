@@ -25,6 +25,7 @@ public class BlackjackGame {
             System.out.println("hit or stay?");
             String hitOrStay = scanner.nextLine().trim();
             player.performMove(myDeck, hitOrStay);
+
         }
     }
 }
