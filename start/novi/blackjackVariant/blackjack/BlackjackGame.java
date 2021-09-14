@@ -8,9 +8,9 @@ public abstract class BlackjackGame {
     private Player player;
     private Dealer dealer;
 
-    public BlackjackGame(Scanner inputScanner){
+    public BlackjackGame(Scanner inputScanner, Deck deck){
         this.scanner = inputScanner;
-        myDeck = new Deck();
+        myDeck = deck;
         player = new Player();
         dealer = new Dealer();
     }
