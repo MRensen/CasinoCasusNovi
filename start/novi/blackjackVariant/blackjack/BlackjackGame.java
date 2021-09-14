@@ -1,7 +1,8 @@
-package novi.blackjack;
+package novi.blackjackVariant.blackjack;
 
 import java.util.Scanner;
-public class BlackjackGame {
+
+public abstract class BlackjackGame {
     private final Scanner scanner;
     private Deck myDeck;
     private Player player;
@@ -72,4 +73,6 @@ public class BlackjackGame {
         System.out.println(player.renderHand());
         System.out.println(dealer.renderHand());
     }
+
+    abstract void runGameLoop();
 }
