@@ -13,15 +13,26 @@ public class ReelDeck {
     }
 
     public void roll(){
-
+        for(Reel reel: reels){
+            reel.roll();
+        }
     }
 
     public String render(){
-        return null;
+        StringBuilder builder = new StringBuilder();
+        for(Reel reel : reels){
+            builder.append(reel.render()+ "|");
+        }
+        return "|" + builder.toString();
     }
 
-    public Symbol getSymbol(){
-        return symbol;
+    public boolean allReelsHaveSymbol(Symbol symbol){
+        for(Reel reel : reels){
+            if(! reel.getSymbol().equals(symbol)){
+                return false;
+            }
+        }
+        return true;
     }
 
 }
