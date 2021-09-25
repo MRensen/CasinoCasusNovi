@@ -49,6 +49,7 @@ public class HangmanGame {
             System.out.println("Vul een letter in");
             scannedLetter = scanner.nextLine();
             //check of speler een letter in vult en niet een woord (scanner.nextChar() bestaat helaas niet)
+            //TODO tot hier splitsen; while loop en mischien ook scanner in playgame
             if(scannedLetter.length() != 1){
                 System.out.println("Dat is niet 1 letter");
             } else {
