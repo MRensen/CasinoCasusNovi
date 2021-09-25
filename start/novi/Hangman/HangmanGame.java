@@ -15,27 +15,36 @@ public class HangmanGame {
     private char chosenLetter;
     private int wrongGuesses = 0;
     private List<Character> guessedLetters = new ArrayList<>();
+    private char[] chosenWordArray;
+    private char[] guessingWordArray;
+    private String chosenWord;
 
     public HangmanGame(Scanner scanner){
         this.scanner = scanner;
     }
 
-    public void playGame(){
+    public void playGame() {
         //start het spel
         System.out.println("LETS PLAY HANGMAN");
         //het spel kiest een woord uit de lijst
-        String chosenWord = WORDS.get(random.nextInt(WORDS.size()));
-        char[] chosenWordArray = chosenWord.toCharArray();
-        char[] guessingWordArray = new char[chosenWordArray.length];
+        chosenWord = WORDS.get(random.nextInt(WORDS.size()));
+        chosenWordArray= chosenWord.toCharArray();
+        guessingWordArray= new char[chosenWordArray.length];
         System.out.println(chosenWord);
         //print * voor alle letters in het gekozen woord
-         for(int i = 0; i < chosenWordArray.length; i++){
-             guessingWordArray[i] = '*';
-         }
+        for (int i = 0; i < chosenWordArray.length; i++) {
+            guessingWordArray[i] = '*';
+        }
         printCharArray(guessingWordArray);
         System.out.println();
-
+        try{
+            play();
+        } catch(DuplicateLetterException | NullPointerException e){
+            e.printStackTrace();
+        }
+    }
          //de speler kiest een letter die niet eerder gekozen is
+        private void play(){
         while(true) {
             System.out.println("Vul een letter in");
             scannedLetter = scanner.nextLine();
@@ -46,11 +55,8 @@ public class HangmanGame {
                 chosenLetter = scannedLetter.charAt(0);
                 // check of de letter al eens gekozen is
                 if (hasBeenGuessed(chosenLetter)) {
-                    try() {
                         throw new DuplicateLetterException(chosenLetter);
-                    } catch (DuplicateLetterException e){
 
-                    }
                 }else{
                     // voeg letter toe aan lijst van gekozen letters?
                     guessedLetters.add(chosenLetter);
