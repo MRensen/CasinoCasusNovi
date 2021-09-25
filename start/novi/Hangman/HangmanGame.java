@@ -2,7 +2,6 @@ package novi.Hangman;
 
 import novi.Hangman.Exceptions.DuplicateLetterException;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class HangmanGame {
@@ -47,19 +46,29 @@ public class HangmanGame {
                 chosenLetter = scannedLetter.charAt(0);
                 // check of de letter al eens gekozen is
                 if (hasBeenGuessed(chosenLetter)) {
-                    throw new DuplicateLetterException(chosenLetter);
+                    try() {
+                        throw new DuplicateLetterException(chosenLetter);
+                    } catch (DuplicateLetterException e){
+
+                    }
                 }else{
                     // voeg letter toe aan lijst van gekozen letters?
                     guessedLetters.add(chosenLetter);
 
                     //zit de letter in het te raden woord?
+                        //goed geraden
                         if (goodGuess(chosenWordArray, guessingWordArray)){
+                            System.out.println("Goed geraden");
                             printCharArray(guessingWordArray);
+                            System.out.println();
+                        //fout geraden
                         } else {
                             wrongGuesses++;
+                            System.out.println("Fout geraden");
                             if(wrongGuesses<8) {
                                 printImage(ImageFactory.getImage(wrongGuesses));
                                 printCharArray(guessingWordArray);
+                                System.out.println();
                             } else {
                                 System.out.println("You have lost");
                                 printCharArray(guessingWordArray);
