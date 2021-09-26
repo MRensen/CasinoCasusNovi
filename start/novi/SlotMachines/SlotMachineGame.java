@@ -1,8 +1,10 @@
 package novi.SlotMachines;
 
+import novi.Game;
+
 import java.util.Scanner;
 
-public class SlotMachineGame {
+public class SlotMachineGame implements Game {
 
     private int coins;
     private SlotMachine machine;
@@ -72,6 +74,26 @@ public class SlotMachineGame {
                 System.out.println("You have: " + coins);
             }
         }
+    }
+//TODO implement Game interface
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void playGame(int coins) {
+
+    }
+
+    @Override
+    public int getMinimalRequiredCoins() {
+        return 0;
+    }
+
+    @Override
+    public int getWinnings() {
+        return 0;
     }
 }
 

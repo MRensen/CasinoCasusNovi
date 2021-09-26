@@ -1,9 +1,11 @@
 package novi.higherlower;
 
+import novi.Game;
+
 import java.util.Scanner;
 import java.util.Random;
 
-public class HigherLowerGame {
+public class HigherLowerGame implements Game {
     private final Scanner inputScanner;
     private final boolean devtest = true;
     private int cheatCheck = 0;
@@ -83,5 +85,25 @@ public class HigherLowerGame {
         if(devtest) {
             System.out.println("DEVTEST: " + print);
         }
+    }
+//TODO implement Game interface
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void playGame(int coins) {
+
+    }
+
+    @Override
+    public int getMinimalRequiredCoins() {
+        return 0;
+    }
+
+    @Override
+    public int getWinnings() {
+        return 0;
     }
 }

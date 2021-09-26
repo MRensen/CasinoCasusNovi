@@ -1,10 +1,11 @@
 package novi.Hangman;
 
+import novi.Game;
 import novi.Hangman.Exceptions.DuplicateLetterException;
 
 import java.util.*;
 
-public class HangmanGame {
+public class HangmanGame implements Game {
 
     private final static List<String> WORDS = Arrays.asList("grandmother", "skill", "appearance", "height", "revolution",
             "writer", "economics", "criticism", "preparation", "courage", "childhood", "steak", "night", "importance",
@@ -142,5 +143,25 @@ public class HangmanGame {
         for (String line : image) {
             System.out.println(line);
         }
+    }
+//TODO implement Game interface
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void playGame(int coins) {
+
+    }
+
+    @Override
+    public int getMinimalRequiredCoins() {
+        return 0;
+    }
+
+    @Override
+    public int getWinnings() {
+        return 0;
     }
 }
