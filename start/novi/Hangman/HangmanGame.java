@@ -32,8 +32,6 @@ public class HangmanGame {
         chosenWordArray = chosenWord.toCharArray();
         guessingWordArray = new char[chosenWordArray.length];
 
-        //TODO: remove this line when development is finished; For testing purposes only!
-        System.out.println(chosenWord);
 
         //print * voor alle letters in het gekozen woord
         for (int i = 0; i < chosenWordArray.length; i++) {
