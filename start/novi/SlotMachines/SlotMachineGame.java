@@ -5,6 +5,9 @@ import novi.Game;
 import java.util.Scanner;
 
 public class SlotMachineGame implements Game {
+    private int playerCoins;
+    private final int minimalRequiredCoins = 1;
+    private final String name = "Slotmachines";
 
     private int coins;
     private SlotMachine machine;
@@ -17,7 +20,7 @@ public class SlotMachineGame implements Game {
 
     public void playGame(){
         while(true) {
-            System.out.println("Op welke machine wil je spelen?");
+            System.out.println("On which machine do you want to play?");
             System.out.println("Press 1 for 'Penny', 2 for 'High Roller', 3 for 'Five-reeler' ");
             int answer = scanner.nextInt();
             scanner.nextLine();
@@ -78,22 +81,23 @@ public class SlotMachineGame implements Game {
 //TODO implement Game interface
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public void playGame(int coins) {
-
+        this.playerCoins = coins;
+        playGame();
     }
 
     @Override
     public int getMinimalRequiredCoins() {
-        return 0;
+        return minimalRequiredCoins;
     }
 
     @Override
     public int getWinnings() {
-        return 0;
+        return coins - 100;
     }
 }
 

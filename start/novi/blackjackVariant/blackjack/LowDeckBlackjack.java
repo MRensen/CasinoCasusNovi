@@ -5,6 +5,8 @@ import novi.Game;
 import java.util.Scanner;
 
 public class LowDeckBlackjack extends BlackjackGame implements Game {
+    private final String name = "Low Deck Blackjack";
+    private final int minimalRequiredCoins = 20;
 
     public LowDeckBlackjack (Scanner scanner){
 
@@ -19,21 +21,25 @@ public class LowDeckBlackjack extends BlackjackGame implements Game {
     //TODO implement Game interface
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public void playGame(int coins) {
-
+        runGameLoop();
     }
 
     @Override
     public int getMinimalRequiredCoins() {
-        return 0;
+        return minimalRequiredCoins;
     }
 
     @Override
     public int getWinnings() {
-        return 0;
+        if(haswon()){
+            return minimalRequiredCoins * 2;
+        } else {
+            return -minimalRequiredCoins;
+        }
     }
 }
