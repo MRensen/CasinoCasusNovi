@@ -1,9 +1,12 @@
 package novi.higherlower;
 
+import com.diogonunes.jcolor.Attribute;
 import novi.Game;
 
 import java.util.Scanner;
 import java.util.Random;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class HigherLowerGame implements Game {
     private final String name = "HigherLower";
@@ -55,7 +58,7 @@ public class HigherLowerGame implements Game {
             } else if(Integer.parseInt(input) < randomNumber){
                 System.out.println("That number is too low");
             } else {
-                System.out.println("Correct! You guessed the number in " + gamesPlayed + " turns");
+                System.out.println(colorize("Correct! You guessed the number in " + gamesPlayed + " turns", Attribute.GREEN_TEXT()));
                 winnings = winnings + (10 - gamesPlayed);
                 if(gamesPlayed == 1){
                     cheatCheck ++;

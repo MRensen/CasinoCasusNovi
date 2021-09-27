@@ -1,6 +1,11 @@
 package novi.blackjack;
 
+import com.diogonunes.jcolor.Attribute;
+
 import java.util.Scanner;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
+
 public class BlackjackGame {
     private final Scanner scanner;
     private Deck myDeck;
@@ -61,10 +66,10 @@ public class BlackjackGame {
     }
 
     private void won(){
-        System.out.println("You Won!!!");
+        System.out.println(colorize("You Won!!!", Attribute.GREEN_TEXT()));
     }
     private void lost(){
-        System.out.println("You lost!!!");
+        System.out.println(colorize("You lost!!!", Attribute.RED_TEXT()));
     }
 
     //print the hands of the player and dealer
