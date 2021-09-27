@@ -1,12 +1,18 @@
 package novi.higherlower;
 
+import novi.Game;
+
 import java.util.Scanner;
 import java.util.Random;
 
-public class HigherLowerGame {
+public class HigherLowerGame implements Game {
+    private final String name = "HigherLower";
+    private final int minimalRequiredCoins = 5;
+    private int coins;
     private final Scanner inputScanner;
     private final boolean devtest = true;
     private int cheatCheck = 0;
+    private int winnings = 0;
 
     public HigherLowerGame(Scanner inputScanner) {
         this.inputScanner = inputScanner;
@@ -50,6 +56,7 @@ public class HigherLowerGame {
                 System.out.println("That number is too low");
             } else {
                 System.out.println("Correct! You guessed the number in " + gamesPlayed + " turns");
+                winnings = winnings + (10 - gamesPlayed);
                 if(gamesPlayed == 1){
                     cheatCheck ++;
                     if(cheatCheck >= 5){
@@ -83,5 +90,27 @@ public class HigherLowerGame {
         if(devtest) {
             System.out.println("DEVTEST: " + print);
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void playGame(int coins) {
+        this.coins = coins -5;
+        playGame();
+
+    }
+
+    @Override
+    public int getMinimalRequiredCoins() {
+        return minimalRequiredCoins;
+    }
+
+    @Override
+    public int getWinnings() {
+        return winnings;
     }
 }

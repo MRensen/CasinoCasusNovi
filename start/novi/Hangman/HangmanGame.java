@@ -1,10 +1,15 @@
 package novi.Hangman;
 
+import novi.Game;
 import novi.Hangman.Exceptions.DuplicateLetterException;
 
 import java.util.*;
 
-public class HangmanGame {
+public class HangmanGame implements Game {
+    private final int minimalRequiredCoins = 8;
+    private final String name = "Hangman";
+    private int playerCoins;
+    private int winnings;
 
     private final static List<String> WORDS = Arrays.asList("grandmother", "skill", "appearance", "height", "revolution",
             "writer", "economics", "criticism", "preparation", "courage", "childhood", "steak", "night", "importance",
@@ -40,11 +45,11 @@ public class HangmanGame {
         printCharArray(guessingWordArray);
         System.out.println();
         while (gameIsOn) {
-            System.out.println("Vul een letter in");
+            System.out.println("Guess a letter");
             scannedLetter = scanner.nextLine();
             //check of speler een letter in vult en niet een woord (scanner.nextChar() bestaat helaas niet)
             if (scannedLetter.length() != 1) {
-                System.out.println("Dat is niet 1 letter");
+                System.out.println("That is not 1 letter");
             } else {
                 chosenLetter = scannedLetter.charAt(0);
             }
@@ -70,27 +75,28 @@ public class HangmanGame {
             //zit de letter in het te raden woord?
             //goed geraden
             if (goodGuess(chosenWordArray, guessingWordArray)) {
-                System.out.println("Goed geraden");
+                System.out.println("Good guess");
                 printCharArray(guessingWordArray);
                 System.out.println();
                 //check if won or lost or else continue
                 if (haswon(guessingWordArray)) {
-                    System.out.println("You have won");
+                    System.out.println("You have WON!!");
                     gameIsOn = false;
                     return;
                 }
                 //fout geraden
             } else {
                 wrongGuesses++;
-                System.out.println("Fout geraden");
+                System.out.println("Wrong guess");
                 if (wrongGuesses < 8) {
                     printImage(ImageFactory.getImage(wrongGuesses));
                     printCharArray(guessingWordArray);
                     System.out.println();
                 } else {
                     System.out.println("You have lost");
+                    System.out.print("You guessed: ");
                     printCharArray(guessingWordArray);
-                    System.out.println(chosenWord);
+                    System.out.println("You should've guessed: " + chosenWord);
                     gameIsOn = false;
                     return;
                 }
@@ -142,5 +148,31 @@ public class HangmanGame {
         for (String line : image) {
             System.out.println(line);
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void playGame(int coins) {
+        playerCoins = coins;
+        playGame();
+    }
+
+    @Override
+    public int getMinimalRequiredCoins() {
+        return minimalRequiredCoins;
+    }
+
+    @Override
+    public int getWinnings() {
+        if(!gameIsOn) {
+            return -minimalRequiredCoins + ((8 - wrongGuesses) * 2);
+        } else {
+            return 0;
+        }
+
     }
 }

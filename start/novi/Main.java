@@ -13,16 +13,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner inputScanner = new Scanner(System.in);
 
-        HangmanGame game = new HangmanGame(inputScanner);
-
-//        SlotMachineGame game = new SlotMachineGame(inputScanner);
-
-
-//        BlackjackGame game = new LowDeckBlackjack(inputScanner);
-
-//        HigherLowerGame game = new HigherLowerGame(inputScanner);
-
-        game.playGame();
+        Casino casino = new Casino(inputScanner);
+        casino.start();
 
     }
 }
