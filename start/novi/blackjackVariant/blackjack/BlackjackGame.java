@@ -7,7 +7,7 @@ public abstract class BlackjackGame {
     private Deck myDeck;
     private Player player;
     private Dealer dealer;
-    private boolean win;
+    private Boolean win;
 
     public BlackjackGame(Scanner inputScanner, Deck deck) {
         this.scanner = inputScanner;

@@ -94,8 +94,9 @@ public class HangmanGame implements Game {
                     System.out.println();
                 } else {
                     System.out.println("You have lost");
+                    System.out.print("You guessed: ");
                     printCharArray(guessingWordArray);
-                    System.out.println(chosenWord);
+                    System.out.println("You should've guessed: " + chosenWord);
                     gameIsOn = false;
                     return;
                 }
@@ -167,6 +168,11 @@ public class HangmanGame implements Game {
 
     @Override
     public int getWinnings() {
-        return 8 - wrongGuesses;
+        if(!gameIsOn) {
+            return -minimalRequiredCoins + ((8 - wrongGuesses) * 2);
+        } else {
+            return 0;
+        }
+
     }
 }

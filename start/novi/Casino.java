@@ -6,6 +6,7 @@ import novi.blackjackVariant.blackjack.LowDeckBlackjack;
 import novi.blackjackVariant.blackjack.SimpleBlackjack;
 import novi.higherlower.HigherLowerGame;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Casino {
@@ -43,14 +44,22 @@ public class Casino {
                         2: Low Deck Blackjack
                         3: Simple Blackjack
                         4: Slot Machine
-                        5: Hangman""");
-                int gameOfChoice = scanner.nextInt();
+                        5: Hangman
+                        6: Donate 999 coins to charity""");
+                int gameOfChoice = 0;
+                while(gameOfChoice == 0){
+                    try{
+                        gameOfChoice = scanner.nextInt();
+                    } catch(InputMismatchException e){
+                        System.out.println("That is not a number");
+                    }
+                }
                 scanner.nextLine(); //omdat nextint niet naar de volgende regel springt
                 switch (gameOfChoice){
                     case 1: game = new HigherLowerGame(scanner);
                     if(enoughCoins(game.getMinimalRequiredCoins())) {
                         game.playGame(playerCoins);}
-                    break;
+                        break;
                     case 2: game = new LowDeckBlackjack(scanner);
                         if(enoughCoins(game.getMinimalRequiredCoins())) {
                             game.playGame(playerCoins);}
@@ -67,17 +76,30 @@ public class Casino {
                         if(enoughCoins(game.getMinimalRequiredCoins())) {
                             game.playGame(playerCoins);}
                         break;
+                    case 6: if(enoughCoins(999)) {
+                        playerCoins -= 999;
+                    }
+                        break;
                     default:
                         System.out.println("'" + gameOfChoice + "' is not a valid answer");
                         break;
                     }
-                playerCoins = playerCoins + game.getWinnings();
+                try {
+                    playerCoins = playerCoins + game.getWinnings();
+                } catch (NullPointerException e){
+                    //do nothing, because this just means gameOfChoice > number of switch cases
+                }
                 System.out.println("You currently have " + playerCoins + " coins.");
             }
         }
 
+
         private boolean enoughCoins(int min){
-            return min<playerCoins;
+            boolean check = min<playerCoins;
+            if(!check){
+                System.out.println("You do not have enough coins");
+            }
+            return check;
         }
 
 }

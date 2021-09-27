@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SlotMachineGame implements Game {
     private int playerCoins;
-    private final int minimalRequiredCoins = 1;
+    private final int minimalRequiredCoins = 100;
     private final String name = "Slotmachines";
 
     private int coins;
@@ -86,7 +86,7 @@ public class SlotMachineGame implements Game {
 
     @Override
     public void playGame(int coins) {
-        this.playerCoins = coins;
+        this.playerCoins = coins-100;
         playGame();
     }
 

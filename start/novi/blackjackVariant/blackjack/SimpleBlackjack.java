@@ -38,7 +38,7 @@ public class SimpleBlackjack extends BlackjackGame implements Game {
 
         if(haswon()){
             return minimalRequiredCoins * 2;
-        } else {
+        } else{
             return -minimalRequiredCoins;
         }
     }
