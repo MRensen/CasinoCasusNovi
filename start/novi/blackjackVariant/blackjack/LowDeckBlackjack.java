@@ -18,7 +18,7 @@ public class LowDeckBlackjack extends BlackjackGame implements Game {
         playGame();
     }
 
-    //TODO implement Game interface
+
     @Override
     public String getName() {
         return name;

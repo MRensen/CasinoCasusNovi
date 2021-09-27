@@ -149,7 +149,7 @@ public class HangmanGame implements Game {
             System.out.println(line);
         }
     }
-//TODO implement Game interface
+
     @Override
     public String getName() {
         return name;

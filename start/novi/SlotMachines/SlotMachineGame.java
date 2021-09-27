@@ -78,7 +78,7 @@ public class SlotMachineGame implements Game {
             }
         }
     }
-//TODO implement Game interface
+
     @Override
     public String getName() {
         return name;

@@ -91,7 +91,7 @@ public class HigherLowerGame implements Game {
             System.out.println("DEVTEST: " + print);
         }
     }
-//TODO implement Game interface
+
     @Override
     public String getName() {
         return name;
