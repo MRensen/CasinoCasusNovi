@@ -3,9 +3,9 @@ package novi;
 import com.diogonunes.jcolor.Attribute;
 import novi.Hangman.HangmanGame;
 import novi.SlotMachines.SlotMachineGame;
-import novi.blackjackVariant.blackjack.LowDeckBlackjack;
-import novi.blackjackVariant.blackjack.SimpleBlackjack;
-import novi.higherlower.HigherLowerGame;
+import novi.Blackjack.LowDeckBlackjack;
+import novi.Blackjack.SimpleBlackjack;
+import novi.HigherLower.HigherLowerGame;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
