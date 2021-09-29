@@ -4,7 +4,6 @@ import com.diogonunes.jcolor.Attribute;
 import novi.Game;
 
 import java.util.Scanner;
-import java.util.Random;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
@@ -16,9 +15,11 @@ public class HigherLowerGame implements Game {
     private final boolean devtest = true;
     private int cheatCheck = 0;
     private int winnings = 0;
+    private IRandomGenerator random;
 
-    public HigherLowerGame(Scanner inputScanner) {
+    public HigherLowerGame(Scanner inputScanner, IRandomGenerator random) {
         this.inputScanner = inputScanner;
+        this.random = random;
     }
 
     public void playGame() {
@@ -26,10 +27,10 @@ public class HigherLowerGame implements Game {
         int gamesPlayed = 0;
 
         // Here you should generate the number to guess
-        Random rand = new Random();
-        int randomNumber = rand.nextInt(100);
+        int randomNumber = random.nextInt(100);
         randomNumber++;
         //devprint(randomNumber);
+        System.out.println("Guess a number between 0 and 100. You have 10 guesses.");
 
 
         while (gameIsRunning) {
@@ -46,17 +47,25 @@ public class HigherLowerGame implements Game {
                     System.out.println("That is not a number. Try again:");
                     input = inputScanner.nextLine();
                 }
-            } while(playerGuess == -1);
+            } while (playerGuess == -1);
             // end loop
 
             System.out.printf("You typed: %s\n", input);
             gamesPlayed++;
+            System.out.println(gamesPlayed);
 
             // Check if the guess is correct, if so end the game
-            if(Integer.parseInt(input) > randomNumber){
+            if (Integer.parseInt(input) > randomNumber) {
                 System.out.println("That number is too high");
-            } else if(Integer.parseInt(input) < randomNumber){
+            } else if (Integer.parseInt(input) < randomNumber) {
                 System.out.println("That number is too low");
+            } else if (gamesPlayed >= 10){
+                System.out.println("You have made 10 guesses, better luck next time.");
+                //reset and replay
+                gamesPlayed = 0;
+                randomNumber = random.nextInt(100);
+                devprint(randomNumber);
+                playerGuess = -1;
             } else {
                 System.out.println(colorize("Correct! You guessed the number in " + gamesPlayed + " turns", Attribute.GREEN_TEXT()));
                 winnings = winnings + (10 - gamesPlayed);
@@ -79,7 +88,7 @@ public class HigherLowerGame implements Game {
                 } else {
                     //reset and replay
                     gamesPlayed = 0;
-                    randomNumber = rand.nextInt(100);
+                    randomNumber = random.nextInt(100);
                     //devprint(randomNumber);
                     playerGuess = -1;
                 }
@@ -94,6 +103,8 @@ public class HigherLowerGame implements Game {
             System.out.println("DEVTEST: " + print);
         }
     }
+
+
 
     @Override
     public String getName() {

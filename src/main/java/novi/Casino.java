@@ -2,6 +2,7 @@ package novi;
 
 import com.diogonunes.jcolor.Attribute;
 import novi.Hangman.HangmanGame;
+import novi.HigherLower.RandomGenerator;
 import novi.SlotMachines.SlotMachineGame;
 import novi.Blackjack.LowDeckBlackjack;
 import novi.Blackjack.SimpleBlackjack;
@@ -59,7 +60,7 @@ public class Casino {
                 }
                 scanner.nextLine(); //omdat nextint niet naar de volgende regel springt
                 switch (gameOfChoice){
-                    case 1: game = new HigherLowerGame(scanner);
+                    case 1: game = new HigherLowerGame(scanner, new RandomGenerator());
                     if(enoughCoins(game.getMinimalRequiredCoins())) {
                         game.playGame(playerCoins);}
                         break;
