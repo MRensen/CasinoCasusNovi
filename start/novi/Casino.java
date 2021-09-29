@@ -1,5 +1,6 @@
 package novi;
 
+import com.diogonunes.jcolor.Attribute;
 import novi.Hangman.HangmanGame;
 import novi.SlotMachines.SlotMachineGame;
 import novi.blackjackVariant.blackjack.LowDeckBlackjack;
@@ -8,6 +9,8 @@ import novi.higherlower.HigherLowerGame;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class Casino {
     private int playerCoins;
@@ -38,14 +41,14 @@ public class Casino {
                 playingGame = false;
                 return;
             }else {
-                System.out.println("""
+                System.out.println(colorize("""
                         Enter the number of the game you want to play:\s
                         1: Higher Lower
                         2: Low Deck Blackjack
                         3: Simple Blackjack
                         4: Slot Machine
                         5: Hangman
-                        6: Donate 999 coins to charity""");
+                        6: Donate 999 coins to charity""", Attribute.RAPID_BLINK(), Attribute.BRIGHT_MAGENTA_TEXT()));
                 int gameOfChoice = 0;
                 while(gameOfChoice == 0){
                     try{

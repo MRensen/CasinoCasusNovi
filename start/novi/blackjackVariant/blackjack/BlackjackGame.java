@@ -1,6 +1,10 @@
 package novi.blackjackVariant.blackjack;
 
+import com.diogonunes.jcolor.Attribute;
+
 import java.util.Scanner;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public abstract class BlackjackGame {
     private final Scanner scanner;
@@ -63,12 +67,12 @@ public abstract class BlackjackGame {
     }
 
     private void won() {
-        System.out.println("You Won!!!");
+        System.out.println(colorize("You Won!!!", Attribute.GREEN_TEXT()));
         win = true;
     }
 
     private void lost() {
-        System.out.println("You lost!!!");
+        System.out.println(colorize("You lost!!!", Attribute.RED_TEXT()));
         win = false;
     }
 

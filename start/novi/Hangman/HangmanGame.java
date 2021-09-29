@@ -1,9 +1,12 @@
 package novi.Hangman;
 
+import com.diogonunes.jcolor.Attribute;
 import novi.Game;
 import novi.Hangman.Exceptions.DuplicateLetterException;
 
 import java.util.*;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class HangmanGame implements Game {
     private final int minimalRequiredCoins = 8;
@@ -80,7 +83,7 @@ public class HangmanGame implements Game {
                 System.out.println();
                 //check if won or lost or else continue
                 if (haswon(guessingWordArray)) {
-                    System.out.println("You have WON!!");
+                    won();
                     gameIsOn = false;
                     return;
                 }
@@ -93,7 +96,7 @@ public class HangmanGame implements Game {
                     printCharArray(guessingWordArray);
                     System.out.println();
                 } else {
-                    System.out.println("You have lost");
+                    lost();
                     System.out.print("You guessed: ");
                     printCharArray(guessingWordArray);
                     System.out.println("You should've guessed: " + chosenWord);
@@ -174,5 +177,11 @@ public class HangmanGame implements Game {
             return 0;
         }
 
+    }
+    private void won(){
+        System.out.println(colorize("You Won!!!", Attribute.GREEN_TEXT()));
+    }
+    private void lost(){
+        System.out.println(colorize("You lost!!!", Attribute.RED_TEXT()));
     }
 }
