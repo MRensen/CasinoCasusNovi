@@ -29,7 +29,7 @@ public class HigherLowerGame implements Game {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);
         randomNumber++;
-        devprint(randomNumber);
+        //devprint(randomNumber);
 
 
         while (gameIsRunning) {
@@ -80,7 +80,7 @@ public class HigherLowerGame implements Game {
                     //reset and replay
                     gamesPlayed = 0;
                     randomNumber = rand.nextInt(100);
-                    devprint(randomNumber);
+                    //devprint(randomNumber);
                     playerGuess = -1;
                 }
 
