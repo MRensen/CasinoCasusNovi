@@ -16,8 +16,10 @@ public class HigherLowerGame implements Game {
     private final boolean devtest = true;
     private int cheatCheck = 0;
     private int winnings = 0;
+    private IRandomGenerator random;
 
-    public HigherLowerGame(Scanner inputScanner) {
+    public HigherLowerGame(Scanner inputScanner, IRandomGenerator random) {
+        this.random = random;
         this.inputScanner = inputScanner;
     }
 
