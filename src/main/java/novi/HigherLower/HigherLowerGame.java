@@ -28,10 +28,8 @@ public class HigherLowerGame implements Game {
         int gamesPlayed = 0;
 
         // Here you should generate the number to guess
-        Random rand = new Random();
-        int randomNumber = rand.nextInt(100);
-        randomNumber++;
-        //devprint(randomNumber);
+        int randomNumber = random.nextInt(100);
+        devprint(randomNumber);
 
 
         while (gameIsRunning) {
@@ -52,7 +50,6 @@ public class HigherLowerGame implements Game {
             // end loop
 
             System.out.printf("You typed: %s\n", input);
-            gamesPlayed++;
 
             // Check if the guess is correct, if so end the game
             if(Integer.parseInt(input) > randomNumber){
@@ -60,7 +57,7 @@ public class HigherLowerGame implements Game {
             } else if(Integer.parseInt(input) < randomNumber){
                 System.out.println("That number is too low");
             } else {
-                System.out.println(colorize("Correct! You guessed the number in " + gamesPlayed + " turns", Attribute.GREEN_TEXT()));
+                System.out.println(colorize("Correct! You guessed the number in " + (gamesPlayed + 1) + " turns", Attribute.GREEN_TEXT()));
                 winnings = winnings + (10 - gamesPlayed);
                 if(gamesPlayed == 1){
                     cheatCheck ++;
@@ -81,12 +78,13 @@ public class HigherLowerGame implements Game {
                 } else {
                     //reset and replay
                     gamesPlayed = 0;
-                    randomNumber = rand.nextInt(100);
+                    randomNumber = random.nextInt(100);
                     //devprint(randomNumber);
                     playerGuess = -1;
                 }
 
             }
+            gamesPlayed++;
 
         } // end gameloop
     }
